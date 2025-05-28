@@ -1,0 +1,32 @@
+
+public class Test
+
+
+
+
+
+
+
+
+
+
+
+public Unit findNearestEnemy(List<Unit> allUnits) {
+    Unit nearest = null;
+    double minDistance = Double.MAX_VALUE;
+
+    for (Unit other : allUnits) {
+        if (other == this || other.isDead || other.team == this.team) continue;
+
+        double dx = other.x - this.x;
+        double dy = other.y - this.y;
+        double distance = Math.sqrt(dx * dx + dy * dy);
+
+        if (distance < minDistance) {
+            minDistance = distance;
+            nearest = other;
+        }
+    }
+
+    return nearest;
+}
