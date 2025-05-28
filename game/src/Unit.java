@@ -336,8 +336,8 @@ public class Unit  {
         }
         hpBar(g);
         if (isSelected) {
-            g.setColor(Color.CYAN);
-            g.drawRect((int)x-16, (int)y-16, 32, 32);
+            g.setColor(Color.GREEN);
+            g.drawOval((int)x-30, (int)y+50, 70, 40);
         }
     
     }

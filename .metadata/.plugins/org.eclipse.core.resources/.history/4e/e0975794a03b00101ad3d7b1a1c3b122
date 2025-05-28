@@ -107,19 +107,6 @@ public class GamePanel extends JPanel implements ActionListener, MouseListener, 
             g.setColor(Color.CYAN);
             g.drawRect(left, top, width, height);
         }
-        //UI 그리기
-        if (selectedBuilding != null) {
-            g.setColor(Color.LIGHT_GRAY);
-            g.fillRect(buttonRect.x, buttonRect.y, buttonRect.width, buttonRect.height);
-
-            g.setColor(Color.BLACK);
-            g.drawRect(buttonRect.x, buttonRect.y, buttonRect.width, buttonRect.height);
-            g.drawString("유닛 생산", buttonRect.x + 15, buttonRect.y + 25);
-        }
-
-        
-        
-        
     }
 
     

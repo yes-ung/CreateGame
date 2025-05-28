@@ -107,19 +107,6 @@ public class GamePanel extends JPanel implements ActionListener, MouseListener, 
             g.setColor(Color.CYAN);
             g.drawRect(left, top, width, height);
         }
-        //UI 그리기
-        if (selectedBuilding != null) {
-            g.setColor(Color.LIGHT_GRAY);
-            g.fillRect(buttonRect.x, buttonRect.y, buttonRect.width, buttonRect.height);
-
-            g.setColor(Color.BLACK);
-            g.drawRect(buttonRect.x, buttonRect.y, buttonRect.width, buttonRect.height);
-            g.drawString("유닛 생산", buttonRect.x + 15, buttonRect.y + 25);
-        }
-
-        
-        
-        
     }
 
     
@@ -177,26 +164,6 @@ public class GamePanel extends JPanel implements ActionListener, MouseListener, 
     }
     @Override     //BUTTON1=왼쪽 2= 휠 3= 오른쪽
     public void mousePressed(MouseEvent e) {
-    	
-    	int mx = e.getX();
-        int my = e.getY();
-        selectedBuilding = null;
-
-        for (Building b : buildings) {
-            if (b.contains(mx, my)) {
-                if (b.team == "1") {
-                    selectedBuilding = b;
-                    break;
-                }
-            }
-        }
-    	
-    	
-    	
-    	
-    	
-    	
-    	
         if (e.getButton() == MouseEvent.BUTTON1) {
             dragStartX = e.getX();
             dragStartY = e.getY();
@@ -207,16 +174,6 @@ public class GamePanel extends JPanel implements ActionListener, MouseListener, 
     }
     @Override
     public void mouseReleased(MouseEvent e) {
-    	
-    	int mx = e.getX();
-        int my = e.getY();
-
-        // 버튼 클릭 처리
-        if (selectedBuilding != null && buttonRect.contains(mx, my)) {
-            selectedBuilding.produceUnit();
-        }
-    	
-    	
         if (e.getButton() == MouseEvent.BUTTON1 && dragging) {
             dragging = false;
             dragEndX = e.getX();

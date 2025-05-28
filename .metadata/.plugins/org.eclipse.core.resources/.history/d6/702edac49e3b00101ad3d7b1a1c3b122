@@ -13,12 +13,14 @@ public class Unit  {
     boolean hasArrived = false; // 트루 도착 펄스 도착안함
     int maxHP = 100; //유닛 최대체력설정
     int currentHP = 100;  // 유닛 현재체력설정
-    int attackDamage = 10; //유닛 공격력
-    int attackRange = 500;  // 공격 사거리 (픽셀)
-    int attackCooldown = 30; // 공격 쿨타임 (프레임 단위)
+    int attackDamage = 1; //유닛 공격력
+    int attackRange = 300;  // 공격 사거리 (픽셀)
+    int attackCooldown = 60; // 공격 쿨타임 (프레임 단위)
     int attackTimer = 0;
     boolean isDead = false; // 유닛 생사유무
+    boolean deadUnitDelete = false;
     boolean isAttacking = false;//공격중인지 유무
+    boolean isSelected = false; // 유닛 선택 유무
     String team;
     Unit targetEnemy = null; // 현재 공격대상
     
@@ -67,6 +69,13 @@ public class Unit  {
   int attackFrameCount = 1; // 총 프레임 수
   int attackFrameDelay = 5; // 프레임 바꾸는 속도 제어용
   int attackFrameTimer = 0;
+//  죽는 모션 구형용 여러 프레임 선언
+  BufferedImage[] deadSprites;
+  Direction deadDirection = Direction.DOWN;
+  int deadCurrentFrame = 0;
+  int deadFrameCount = 3; // 총 프레임 수
+  int deadFrameDelay = 5; // 프레임 바꾸는 속도 제어용
+  int deadFrameTimer = 0;
   
   
 //  충돌했는지 안했는지 트루,펄스 트루면 충돌 
@@ -124,7 +133,9 @@ public class Unit  {
 
 	    return nearest;
 	}
+//유닛 마우스로 클릭해서 선택하기 @@@@@@@@@@@@@@@
 
+//유닛 마우스로 클릭해서 선택하기 @@@@@@@@@@@@@@@
 
 
     public Unit(double x, double y, String team) {
@@ -138,6 +149,7 @@ public class Unit  {
         	     "down_left",  "up_left" };
         directionFrames = new BufferedImage[8][frameCount];
         attackSprites = new BufferedImage[8][attackFrameCount];
+        deadSprites = new BufferedImage[deadFrameCount];
 
         for (int d = 0; d < 8; d++) {
             for (int f = 0; f < frameCount; f++) {
@@ -152,6 +164,13 @@ public class Unit  {
                     attackSprites[d][f] = ImageIO.read(getClass().getResource("/유닛기본모션/공격모션/attack_" + dirs[d] + "_" + f + ".png"));
                 } catch (IOException | IllegalArgumentException e) {
                     System.out.println("공격이미지 로딩 실패: " + dirs[d] + "_" + f + ".png");
+                }
+            }
+            for (int f = 0; f < deadFrameCount; f++) {
+                try {
+                    deadSprites[f] = ImageIO.read(getClass().getResource("/유닛기본모션/사망모션/dead_" + f + ".png"));
+                } catch (IOException | IllegalArgumentException e) {
+                    System.out.println("사망이미지 로딩 실패: " + f + ".png");
                 }
             }
         }
@@ -212,7 +231,7 @@ public class Unit  {
 	
 	
 	public void update(List<Unit> allUnits) {
-    	if (isDead) return;
+    	if (isDead&&deadUnitDelete) return;
     	
     	// 타겟이 없거나 죽었으면 다시 찾기
         if (targetEnemy == null || targetEnemy.isDead) {
@@ -239,7 +258,7 @@ public class Unit  {
     
     
     
-    
+//    이동 메소드
     public void moveTowardTarget(List<Unit> allUnits) {
   //목적지 근처 도착했으면 안움직이게 하기
 	if (hasArrived) return; 
@@ -254,7 +273,7 @@ public class Unit  {
         // 방향 업데이트
         direction = getDirectionFromDelta(dx, dy);
 
-        // 애니메이션 프레임 전환
+        // 이동 애니메이션 프레임 전환
         frameTimer++;
         if (frameTimer >= frameDelay) {
             frameTimer = 0;
@@ -266,7 +285,8 @@ public class Unit  {
         currentFrame = 0; 
         //        	도착시 달달 떨리는거 없애는 용도
     }
-    
+
+
     for (Unit other : allUnits) {
         if (other != this && isColliding(other)&&distance<30) {
             hasArrived = true;
@@ -277,45 +297,64 @@ public class Unit  {
 
 
     public void draw(Graphics g) {
-    	if (isDead) return; //죽었으면 안그리기,사라지기
+    	if(isDead && deadUnitDelete) return;
+    	
         int dirIndex = direction.ordinal();
         int attackDirIndex = attackDirection.ordinal();
         BufferedImage frame = directionFrames[dirIndex][currentFrame];
         BufferedImage attackFrame = attackSprites[attackDirIndex][attackCurrentFrame];
+        BufferedImage deadFrame = deadSprites[deadCurrentFrame];
         int drawX = (int)x;
         int drawY = (int)y+70;
-
-        if(isAttacking && attackFrame != null) {
+        if (isDead && !deadUnitDelete) {
+    		g.drawImage(deadFrame, drawX - deadFrame.getWidth()/2, drawY - deadFrame.getHeight()/2, null);
+    		deadFrameTimer++;
+    		if (deadFrameTimer >= deadFrameDelay) {
+            	 deadFrameTimer = 0;
+                 deadCurrentFrame = (deadCurrentFrame + 1);                 
+             }
+    		if (deadCurrentFrame==deadFrameCount) {
+    			deadUnitDelete = true;
+    		}
+    		
+    	} else if(isAttacking && attackFrame != null) {
         	g.drawImage(attackFrame, drawX - attackFrame.getWidth()/2, drawY - attackFrame.getHeight()/2, null);
         	attackFrameTimer++;
-             if (attackFrameTimer >= attackFrameDelay) {
-            	 attackFrameTimer = 0;
-                 attackCurrentFrame = (attackCurrentFrame + 1) % attackFrameCount;
-                 isAttacking = false;
-             } 
+    		if (attackFrameTimer >= attackFrameDelay) {
+    			attackFrameTimer = 0;
+    			attackCurrentFrame = (attackCurrentFrame + 1);                 
+             }
+    		if (attackCurrentFrame==attackFrameCount) {
+    			isAttacking = false;
+    			attackCurrentFrame=0;    			
+    		}
         } else   if (frame != null) {
             g.drawImage(frame, (int)x - frame.getWidth() / 2, (int)y - frame.getHeight() / 2, null);
         } else {
             g.setColor(Color.GREEN);
             g.fillOval((int)x - 10, (int)y - 10, 20, 20);
         }
-     // 체력바 그리기
+        hpBar(g);
+        if (isSelected) {
+            g.setColor(Color.GREEN);
+            g.drawOval((int)x-16, (int)y-16, 50, 32);
+        }
+    
+    }
+    
+    //체력바 구현
+    public void hpBar(Graphics g) {
+    	// 체력바 그리기
+    	int drawX = (int)x;
+        int drawY = (int)y+70;
         int barWidth = 50;
         int hpWidth = (int)((currentHP / (double)maxHP) * barWidth);
-//        g.setColor(Color.RED);
-//        g.fillRect(drawX - barWidth/2, drawY, barWidth, 5);
-        
+     
         g.setColor(Color.GREEN);
         g.fillRect(drawX - barWidth/2, drawY, hpWidth, 5);
         g.setColor(Color.BLACK);
         g.drawRect(drawX - barWidth/2, drawY, barWidth, 5);
-        
-        
-        
-        
-        
-        
+    	
     }
- 
 
 }

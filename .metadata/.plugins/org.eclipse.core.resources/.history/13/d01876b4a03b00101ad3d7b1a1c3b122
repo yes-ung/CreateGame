@@ -6,7 +6,7 @@ import java.util.List;
 import javax.imageio.ImageIO;
 
 public class Building {
-	int x, y, width = 64, height = 64;
+    int x, y;
     String team = "1";
     BufferedImage sprite;
     int buildCooldown = 10; // 생산 시간 (프레임 단위)
