@@ -12,7 +12,7 @@ public class UnitEnemy extends Unit {
 		this.speed =3;
 		this.maxHP =1000;
     	this.currentHP =1000;
-    	this.attackDamage=1;
+    	this.attackDamage=30;
 		
 	}
 	
@@ -51,17 +51,17 @@ public class UnitEnemy extends Unit {
 
 
 	@Override
-	public void hpBar(Graphics g) {
+	public void hpBar(Graphics g, int cameraX , int cameraY) {
     	// 체력바 그리기
     	int drawX = (int)x;
-        int drawY = (int)y+70;
+        int drawY = (int)y;
         int barWidth = 50;
         int hpWidth = (int)((currentHP / (double)maxHP) * barWidth);
      
         g.setColor(Color.RED);
-        g.fillRect(drawX - barWidth/2, drawY, hpWidth, 5);
+        g.fillRect(drawX - barWidth/2 -cameraX, drawY+20-cameraY, hpWidth, 5);
         g.setColor(Color.BLACK);
-        g.drawRect(drawX - barWidth/2, drawY, barWidth, 5);
+        g.drawRect(drawX - barWidth/2 -cameraX, drawY+20-cameraY, barWidth, 5);
     	
     }
 }

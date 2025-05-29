@@ -13,8 +13,8 @@ public class Unit  {
     boolean hasArrived = false; // 트루 도착 펄스 도착안함
     int maxHP = 100; //유닛 최대체력설정
     int currentHP = 100;  // 유닛 현재체력설정
-    int attackDamage = 1; //유닛 공격력
-    int attackRange = 300;  // 공격 사거리 (픽셀)
+    int attackDamage = 5; //유닛 공격력
+    int attackRange = 200;  // 공격 사거리 (픽셀)
     int attackCooldown = 60; // 공격 쿨타임 (프레임 단위)
     int attackTimer = 0;
     boolean isDead = false; // 유닛 생사유무
@@ -133,10 +133,6 @@ public class Unit  {
 
 	    return nearest;
 	}
-//유닛 마우스로 클릭해서 선택하기 @@@@@@@@@@@@@@@
-
-//유닛 마우스로 클릭해서 선택하기 @@@@@@@@@@@@@@@
-
 
     public Unit(double x, double y, String team) {
         this.x = x ;
@@ -296,7 +292,7 @@ public class Unit  {
     }
 
 
-    public void draw(Graphics g) {
+    public void draw(Graphics g, int cameraX , int cameraY) {
     	if(isDead && deadUnitDelete) return;
     	
         int dirIndex = direction.ordinal();
@@ -307,7 +303,7 @@ public class Unit  {
         int drawX = (int)x;
         int drawY = (int)y+70;
         if (isDead && !deadUnitDelete) {
-    		g.drawImage(deadFrame, drawX - deadFrame.getWidth()/2, drawY - deadFrame.getHeight()/2, null);
+    		g.drawImage(deadFrame, drawX - deadFrame.getWidth()/2 -cameraX, drawY - deadFrame.getHeight()+20 -cameraY , null);
     		deadFrameTimer++;
     		if (deadFrameTimer >= deadFrameDelay) {
             	 deadFrameTimer = 0;
@@ -318,7 +314,7 @@ public class Unit  {
     		}
     		
     	} else if(isAttacking && attackFrame != null) {
-        	g.drawImage(attackFrame, drawX - attackFrame.getWidth()/2, drawY - attackFrame.getHeight()/2, null);
+        	g.drawImage(attackFrame, drawX - attackFrame.getWidth()/2  -cameraX, drawY - attackFrame.getHeight()+20-cameraY, null);
         	attackFrameTimer++;
     		if (attackFrameTimer >= attackFrameDelay) {
     			attackFrameTimer = 0;
@@ -329,31 +325,31 @@ public class Unit  {
     			attackCurrentFrame=0;    			
     		}
         } else   if (frame != null) {
-            g.drawImage(frame, (int)x - frame.getWidth() / 2, (int)y - frame.getHeight() / 2, null);
+            g.drawImage(frame, (int)x - frame.getWidth() / 2 -cameraX, (int)y - frame.getHeight()+20-cameraY, null);
         } else {
             g.setColor(Color.GREEN);
-            g.fillOval((int)x - 10, (int)y - 10, 20, 20);
+            g.fillOval((int)x - 10 -cameraX, (int)y - 10-cameraY, 20, 20);
         }
-        hpBar(g);
+        hpBar(g,cameraX ,cameraY);
         if (isSelected) {
             g.setColor(Color.GREEN);
-            g.drawOval((int)x-30, (int)y+50, 70, 40);
+            g.drawOval((int)x-35 -cameraX, (int)y-20-cameraY, 70, 40);
         }
     
     }
     
     //체력바 구현
-    public void hpBar(Graphics g) {
+    public void hpBar(Graphics g, int cameraX , int cameraY) {
     	// 체력바 그리기
     	int drawX = (int)x;
-        int drawY = (int)y+70;
+        int drawY = (int)y;
         int barWidth = 50;
         int hpWidth = (int)((currentHP / (double)maxHP) * barWidth);
      
         g.setColor(Color.GREEN);
-        g.fillRect(drawX - barWidth/2, drawY, hpWidth, 5);
+        g.fillRect(drawX - barWidth/2 -cameraX, drawY+20-cameraY, hpWidth, 5);
         g.setColor(Color.BLACK);
-        g.drawRect(drawX - barWidth/2, drawY, barWidth, 5);
+        g.drawRect(drawX - barWidth/2 -cameraX, drawY+20-cameraY, barWidth, 5);
     	
     }
 
