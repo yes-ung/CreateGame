@@ -12,7 +12,7 @@ public class UnitEnemy extends Unit {
 		this.speed =3;
 		this.maxHP =1000;
     	this.currentHP =1000;
-    	this.attackDamage=30;
+    	this.attackDamage=100;
 		
 	}
 	

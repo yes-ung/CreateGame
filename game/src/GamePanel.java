@@ -5,11 +5,12 @@ import java.awt.event.*;
 import java.awt.image.*;
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 
 public class GamePanel extends JPanel implements ActionListener, MouseListener, MouseMotionListener {
-	Timer timer;
+	Timer timer;	
 	
 	//마우스 드래그용
 	int dragStartX, dragStartY;
@@ -26,6 +27,8 @@ public class GamePanel extends JPanel implements ActionListener, MouseListener, 
 	int worldClickY = 0;
 	final int MAP_WIDTH = 3000;  //맵 최대넓이
 	final int MAP_HEIGHT = 2000; // 맵 최대높이
+	int[][] map = new int[MAP_WIDTH][MAP_HEIGHT];
+	
 	int border = 20; // 경계 감지 거리	
 	Dimension screenSize = getSize(); // JPanel 크기
 	int screenSizeWidth =0;
@@ -74,14 +77,15 @@ public class GamePanel extends JPanel implements ActionListener, MouseListener, 
         addMouseMotionListener(this);
        
        buildings.add(new Building(200, 200, "1"));
-       buildings.add(new Building(500, 200, "1"));
-       userUnits.add(new Unit(100, 150,"1"));
-       enemys.add(new UnitEnemy(600, 400, "2"));
-       enemys.add(new UnitEnemy(600, 400, "2"));
-       enemys.add(new UnitEnemy(600, 400, "2"));
-       enemys.add(new UnitEnemy(300,400,"2"));
-       test.add(new UnitEnemy(300,400,"3"));
-       test.add(new UnitEnemy(300,400,"3"));
+       buildings.add(new MarinBuilding(500, 200, "1"));
+       userUnits.add(new Unit_Marin(500, 500,"1"));
+
+//       enemys.add(new UnitEnemy(600, 400, "2"));
+//       enemys.add(new UnitEnemy(600, 400, "2"));
+//       enemys.add(new UnitEnemy(600, 400, "2"));
+//       enemys.add(new UnitEnemy(300,400,"2"));
+//       test.add(new UnitEnemy(300,400,"3"));
+//       test.add(new UnitEnemy(300,400,"3"));
        allUnits.addAll(userUnits);
        allUnits.addAll(enemys);
        allUnits.addAll(test);
@@ -102,6 +106,8 @@ public class GamePanel extends JPanel implements ActionListener, MouseListener, 
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
+      //앞쪽에 있는 이미지 앞에 출력되도록 정렬
+        allUnits.sort(Comparator.comparingDouble(s -> s.getY())); 
         // 배경 이미지 그리기
         if (backgroundImage != null) {
             g.drawImage(backgroundImage, -cameraX, -cameraY, null);
@@ -155,6 +161,7 @@ public class GamePanel extends JPanel implements ActionListener, MouseListener, 
 
         for (Unit t : allUnits) {
             t.update( allUnits);
+            t.resolveOverlap(allUnits); // 겹쳤을 경우 처리
          }
   
         
@@ -175,6 +182,7 @@ public class GamePanel extends JPanel implements ActionListener, MouseListener, 
 
                 if (u1.isColliding(u2)) {
                     u1.resolveCollision(u2);
+                    u1.isCollidingWaitFrames =0;
                 }
             }
          }
@@ -212,7 +220,8 @@ public class GamePanel extends JPanel implements ActionListener, MouseListener, 
     	worldClickX = e.getX() + cameraX;
     	worldClickY = e.getY() + cameraY;
         handleRightClick(worldClickX, worldClickY,allUnits);
-        handleLeftClick(worldClickX, worldClickY,allUnits);
+        //버벅여서 단일 유닛 선택 임시로 사용안함
+//        handleLeftClick(worldClickX, worldClickY,allUnits);
         
         // 버튼 클릭 처리
         if (selectedBuilding != null && buttonRect.contains(e.getX(), e.getY())) {

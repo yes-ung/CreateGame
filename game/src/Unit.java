@@ -7,24 +7,36 @@ import java.util.List;
 
 public class Unit  {
     double x, y;
+    int intx = (int)x;  int inty = (int)y;
     double targetX, targetY;
-    int speed = 10;
-    double radius = 20;
+    int speed = 5;
+    double radius = 30; //유닛범위 타원형 y=radius/2
+    double range = 30; // 유닛범위 사각형 가로 range 세로 range/2
     boolean hasArrived = false; // 트루 도착 펄스 도착안함
     int maxHP = 100; //유닛 최대체력설정
     int currentHP = 100;  // 유닛 현재체력설정
     int attackDamage = 5; //유닛 공격력
-    int attackRange = 200;  // 공격 사거리 (픽셀)
+    int attackRange = 70;  // 공격 사거리 (픽셀)
     int attackCooldown = 60; // 공격 쿨타임 (프레임 단위)
     int attackTimer = 0;
     boolean isDead = false; // 유닛 생사유무
     boolean deadUnitDelete = false;
     boolean isAttacking = false;//공격중인지 유무
     boolean isSelected = false; // 유닛 선택 유무
+    int isCollidingWaitFrames = 0; //충돌했을때 잠시 멈추기
     String team;
     Unit targetEnemy = null; // 현재 공격대상
+    List<Point> path = new ArrayList<>(); // 경로 저장
     
-    //공격받을때
+    
+    public void setPath(List<Point> newPath) {
+        this.path = newPath;
+    }
+    public synchronized double getY() {
+		return y;
+	}
+	
+	//공격받을때
     public void takeDamage(int dmg) {
         currentHP -= dmg;
         if (currentHP <= 0) {
@@ -83,7 +95,20 @@ public class Unit  {
 	    double dx = this.x - other.x;
 	    double dy = this.y - other.y;
 	    double distance = Math.sqrt(dx * dx + dy * dy);
-	    double minDist = this.radius + other.radius;
+	    if(distance==0) {return true;} //완전히 겹친 경우	    
+	 // 방향 벡터 정규화
+	    double nx = dx / distance;
+	    double ny = dy / distance;
+	 // 해당 방향에서의 각 타원의 유효 반지름 계산 (타원의 방정식에서 파생)
+	    double thisEffectiveRadius = 1.0 / Math.sqrt(
+	        (nx * nx) / (this.radius * this.radius) + (ny * ny) / (this.radius/2 * this.radius/2)
+	    );
+
+	    double otherEffectiveRadius = 1.0 / Math.sqrt(
+	        (nx * nx) / (other.radius * other.radius) + (ny * ny) / (other.radius/2 * other.radius/2)
+	    );
+
+	    double minDist = thisEffectiveRadius + otherEffectiveRadius;
 
 	    return distance < minDist;
 	}
@@ -113,6 +138,29 @@ public class Unit  {
 	    }
 
 	}
+  
+  // 겹친거 밀어내기 코드 잘 살펴보고 넣을지 결정하기
+  public void resolveOverlap(List<Unit> allUnits) {
+	    for (Unit other : allUnits) {
+	        if (other == this) continue;
+	        Rectangle myBox = getHitbox(intx, inty);
+	        Rectangle otherBox = other.getHitbox(other.intx, other.inty);
+
+	        if (myBox.intersects(otherBox)) {
+	            int dx = intx - other.intx;
+	            int dy = inty - other.inty;
+	            double dist = Math.sqrt(dx * dx + dy * dy);
+	            if (dist == 0) dist = 1; // 같은 좌표 방지
+	            int pushX = (int)(dx / dist);
+	            int pushY = (int)(dy / dist);
+
+	            x += pushX;
+	            y += pushY;
+	        }
+	    }
+	}
+
+
 //  가까운 적을 찾아내는 용도
   public Unit findNearestEnemy(List<Unit> allUnits) {
 	    Unit nearest = null;
@@ -172,6 +220,8 @@ public class Unit  {
         }
 
     }
+    
+    
 
     public void setTarget(double tx, double ty) {
         this.targetX = tx;
@@ -227,6 +277,10 @@ public class Unit  {
 	
 	
 	public void update(List<Unit> allUnits) {
+		if (isCollidingWaitFrames > 0) {
+			isCollidingWaitFrames--;
+	        return;
+	    }
     	if (isDead&&deadUnitDelete) return;
     	
     	// 타겟이 없거나 죽었으면 다시 찾기
@@ -251,20 +305,75 @@ public class Unit  {
         }
         moveTowardTarget(allUnits);    	              
     }
-    
+	
+	//유닛범위 사각형
+	Rectangle getHitbox(int nextX, int nextY) {
+	    return new Rectangle(nextX-(int)range, nextY-(int)range/2, (int)range*2, (int)range); // 중심 기준 히트박스
+	}
+
     
     
 //    이동 메소드
     public void moveTowardTarget(List<Unit> allUnits) {
+    	if (path == null || path.isEmpty()) return;
+    	
+    	 Point nextTile = path.get(0); // 다음 도착 지점 (타일 좌표)
+         int pathTargetX = nextTile.x ;
+         int pathTargetY = nextTile.y ;
+         
+         int pathDx = pathTargetX - (int)x;
+         int pathDy = pathTargetY - (int)y;
+         double pathDistance = Math.sqrt(pathDx * pathDx + pathDy * pathDy);
+         
+         if (pathDistance < speed) {
+             // 거의 도착했으면 해당 타일은 완료 → 다음 타일로 이동
+             x = pathTargetX;
+             y = pathTargetY;
+             path.remove(0); // 다음 목표로 진행
+         } else {
+             // 아직 도착 전이면 이동
+             x += speed * pathDx / pathDistance;
+             y += speed * pathDy / pathDistance;
+         }
+    	
+    	
   //목적지 근처 도착했으면 안움직이게 하기
 	if (hasArrived) return; 
     double dx = targetX - x;
     double dy = targetY -  y;
     double distance = Math.sqrt(dx * dx + dy * dy);
-
+ 
     if (distance > speed) {
-        x += speed * dx / distance;
-        y += speed * dy / distance;
+//    	x += speed * dx / distance;
+//        y += speed * dy / distance;
+        
+//      유닛이 유닛을 못 밀게 하려고 추가했는데 결과가 이상해서 보류
+    	double moveX = (speed * dx / distance);
+        double moveY = (speed * dy / distance);
+
+        double newX = x + moveX;
+        double newY = y + moveY;
+        
+        Rectangle futureHitbox = getHitbox((int)newX, (int)newY);
+        
+        boolean blocked = false;
+        
+        for (Unit other : allUnits) {
+            if (other == this) continue; // 자기 자신 제외
+            
+
+            Rectangle otherHitbox = other.getHitbox((int)other.x, (int)other.y);
+
+            if (futureHitbox.intersects(otherHitbox)) {
+                blocked = true;
+                break;
+            }
+            
+        }
+        if (!blocked) {
+            x = newX;
+            y = newY;
+        }
 
         // 방향 업데이트
         direction = getDirectionFromDelta(dx, dy);
@@ -301,7 +410,12 @@ public class Unit  {
         BufferedImage attackFrame = attackSprites[attackDirIndex][attackCurrentFrame];
         BufferedImage deadFrame = deadSprites[deadCurrentFrame];
         int drawX = (int)x;
-        int drawY = (int)y+70;
+        int drawY = (int)y;
+        //유닛 선택시 표시인데 유닛그림 안 가리도록 제일 먼저 실행되도록 앞쪽에 배치
+        if (isSelected) {
+            g.setColor(Color.GREEN);
+            g.drawOval((int)x -(int)radius -cameraX, (int)y -(int)radius/2 -cameraY, (int)radius*2, (int)radius);
+        }
         if (isDead && !deadUnitDelete) {
     		g.drawImage(deadFrame, drawX - deadFrame.getWidth()/2 -cameraX, drawY - deadFrame.getHeight()+20 -cameraY , null);
     		deadFrameTimer++;
@@ -325,16 +439,13 @@ public class Unit  {
     			attackCurrentFrame=0;    			
     		}
         } else   if (frame != null) {
-            g.drawImage(frame, (int)x - frame.getWidth() / 2 -cameraX, (int)y - frame.getHeight()+20-cameraY, null);
+            g.drawImage(frame, drawX - frame.getWidth() / 2 -cameraX, drawY - frame.getHeight()+20-cameraY, null);
         } else {
             g.setColor(Color.GREEN);
             g.fillOval((int)x - 10 -cameraX, (int)y - 10-cameraY, 20, 20);
         }
         hpBar(g,cameraX ,cameraY);
-        if (isSelected) {
-            g.setColor(Color.GREEN);
-            g.drawOval((int)x-35 -cameraX, (int)y-20-cameraY, 70, 40);
-        }
+      
     
     }
     

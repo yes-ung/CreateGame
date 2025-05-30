@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="chap14.section03.practice02.main"/>
-    <fullyQualifiedTypeName name="chap15.section01.example01.Noname"/>
     <fullyQualifiedTypeName name="chap15.section01.example01.Person"/>
     <fullyQualifiedTypeName name="chap15.section01.example02.Remote"/>
     <fullyQualifiedTypeName name="chap15.section01.example03.Noname"/>
@@ -26,7 +24,6 @@
     <fullyQualifiedTypeName name="java.io.FileInputStream"/>
     <fullyQualifiedTypeName name="java.io.FileReader"/>
     <fullyQualifiedTypeName name="com.sun.java_cup.internal.runtime.Scanner"/>
-    <fullyQualifiedTypeName name="java.util.Scanner"/>
     <fullyQualifiedTypeName name="java.lang.System"/>
     <fullyQualifiedTypeName name="java.io.Reader"/>
     <fullyQualifiedTypeName name="jdk.internal.org.jline.utils.InputStreamReader"/>
@@ -34,7 +31,6 @@
     <fullyQualifiedTypeName name="java.io.BufferedReader"/>
     <fullyQualifiedTypeName name="java.lang.Exception"/>
     <fullyQualifiedTypeName name="java.lang.ArrayIndexOutOfBoundsException"/>
-    <fullyQualifiedTypeName name="java.util.Arrays"/>
     <fullyQualifiedTypeName name="chap17.example01.S1_Outer.Attr"/>
     <fullyQualifiedTypeName name="chap17.example02.S2_Outer"/>
     <fullyQualifiedTypeName name="chap17.example03.S3_Outer"/>
@@ -49,7 +45,6 @@
     <fullyQualifiedTypeName name="chap18.example03.User1"/>
     <fullyQualifiedTypeName name="java.io.File"/>
     <fullyQualifiedTypeName name="java.util.ArrayList"/>
-    <fullyQualifiedTypeName name="Unit.Direction"/>
     <fullyQualifiedTypeName name="UnitEnemy"/>
     <fullyQualifiedTypeName name="Unit"/>
     <fullyQualifiedTypeName name="Unit.Team"/>
@@ -60,4 +55,9 @@
     <fullyQualifiedTypeName name="java.util.List"/>
     <fullyQualifiedTypeName name="java.awt.Graphics"/>
     <fullyQualifiedTypeName name="java.awt.Color"/>
+    <fullyQualifiedTypeName name="java.util.Arrays"/>
+    <fullyQualifiedTypeName name="java.util.Scanner"/>
+    <fullyQualifiedTypeName name="Building"/>
+    <fullyQualifiedTypeName name="MarinBuilding"/>
+    <fullyQualifiedTypeName name="Unit.Direction"/>
 </qualifiedTypeNameHistroy>
