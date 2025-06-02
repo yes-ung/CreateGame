@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="chap15.section01.example01.Person"/>
-    <fullyQualifiedTypeName name="chap15.section01.example02.Remote"/>
-    <fullyQualifiedTypeName name="chap15.section01.example03.Noname"/>
-    <fullyQualifiedTypeName name="java.lang.NullPointerException"/>
     <fullyQualifiedTypeName name="java.lang.Process"/>
     <fullyQualifiedTypeName name="java.util.Optional"/>
     <fullyQualifiedTypeName name="chap15.section02.example02.Product"/>
@@ -60,4 +56,8 @@
     <fullyQualifiedTypeName name="Building"/>
     <fullyQualifiedTypeName name="MarinBuilding"/>
     <fullyQualifiedTypeName name="Unit.Direction"/>
+    <fullyQualifiedTypeName name="java.util.Comparator"/>
+    <fullyQualifiedTypeName name="GameConstants"/>
+    <fullyQualifiedTypeName name="AStarPathfinding.Node"/>
+    <fullyQualifiedTypeName name="TestSit.AStarPathfinding.Node"/>
 </qualifiedTypeNameHistroy>

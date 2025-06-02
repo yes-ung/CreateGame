@@ -7,7 +7,7 @@
     <setAttribute key="name.schedenig.eclipse.grepconsole.StatisticsDisabledIds"/>
     <setAttribute key="name.schedenig.eclipse.grepconsole.StatisticsEnabledIds"/>
     <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
-        <listEntry value="/game/src/Test.java"/>
+        <listEntry value="/game/src/game/test.java"/>
     </listAttribute>
     <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
         <listEntry value="1"/>
@@ -17,7 +17,7 @@
     <booleanAttribute key="org.eclipse.jdt.launching.ATTR_EXCLUDE_TEST_CODE" value="true"/>
     <booleanAttribute key="org.eclipse.jdt.launching.ATTR_SHOW_CODEDETAILS_IN_EXCEPTION_MESSAGES" value="true"/>
     <booleanAttribute key="org.eclipse.jdt.launching.ATTR_USE_CLASSPATH_ONLY_JAR" value="false"/>
-    <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="Test"/>
+    <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="game.test"/>
     <stringAttribute key="org.eclipse.jdt.launching.MODULE_NAME" value="game"/>
     <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="game"/>
 </launchConfiguration>
