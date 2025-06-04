@@ -29,7 +29,6 @@ public class Unit  {
     boolean isAttacking = false;//공격중인지 유무
     boolean isSelected = false; // 유닛 선택 유무
     int isCollidingWaitFrames = 0; //충돌했을때 잠시 멈추기
-    int map[][];
     String team;
     Unit targetEnemy = null; // 현재 공격대상
     Unit self = this; //자기자신 지정
@@ -283,28 +282,28 @@ public class Unit  {
 	
 	
 	
-	public void update(List<Unit> allUnits ,int[][] map) {
-		this.map = map;
+	public void update(List<Unit> allUnits ) {
 		
-		 for (Unit u : allUnits) {
-	        	if (u == self) continue; // ⭐ 자기 자신은 무시
-	            int tx = (int) u.x;
-	            int ty = (int) u.y;
-
-	            for (int dx = (int)-u.range/2; dx < u.range/2; dx++) {
-	                for (int dy = (int)-u.range/4; dy < u.range/4; dy++) {
-	                    int mx = tx + dx;
-	                    int my = ty + dy;
-	                    if (isInBounds(mx, my, map)) {
-	                        map[mx][my] = 1;
-	                    }
-	                }
-	            }
-	        }
-		if (isCollidingWaitFrames > 0) {
-			isCollidingWaitFrames--;
-	        return;
-	    }
+		
+//		 for (Unit u : allUnits) {
+//	        	if (u == self) continue; // ⭐ 자기 자신은 무시
+//	            int tx = (int) u.x;
+//	            int ty = (int) u.y;
+//
+//	            for (int dx = (int)-u.range/2; dx < u.range/2; dx++) {
+//	                for (int dy = (int)-u.range/4; dy < u.range/4; dy++) {
+//	                    int mx = tx + dx;
+//	                    int my = ty + dy;
+//	                    if (isInBounds(mx, my, map)) {
+//	                        map[mx][my] = 1;
+//	                    }
+//	                }
+//	            }
+//	        }
+//		if (isCollidingWaitFrames > 0) {
+//			isCollidingWaitFrames--;
+//	        return;
+//	    }
     	if (isDead&&deadUnitDelete) return;
     	
     	// 타겟이 없거나 죽었으면 다시 찾기
@@ -343,7 +342,7 @@ public class Unit  {
     
 //    이동 메소드
     public void moveTowardTarget(List<Unit> allUnits ) {
-    	List<Node> path = AStarPathfinding.aStar(map, (int)x, (int)y, (int)targetX, (int)targetY);
+    	List<Node> path = AStarPathfinding.aStar(GameConstants.MAP, (int)x, (int)y, (int)targetX, (int)targetY);
     	if (path.isEmpty()) {
             System.out.println("경로를 찾을 수 없습니다.");
         } else {

@@ -62,7 +62,8 @@ public class Unit_Marin extends Unit {
     }
 //  이동 메소드
   public void moveTowardTarget(List<Unit> allUnits ) {
-  	List<Node> path = AStarPathfinding.aStar(map, (int)x, (int)y, (int)targetX, (int)targetY);
+  	List<Node> path = AStarPathfinding.aStar(GameConstants.MAP, (int)x/GameConstants.TILE_SIZE, 
+  			(int)y/GameConstants.TILE_SIZE, (int)targetX/GameConstants.TILE_SIZE, (int)targetY/GameConstants.TILE_SIZE);
   	if (path.isEmpty()) {
           System.out.println("경로를 찾을 수 없습니다.");
       }
@@ -75,7 +76,7 @@ public class Unit_Marin extends Unit {
   	
   	
   	 Node nextTile = path.get(0); // 다음 도착 지점 (타일 좌표)
-       int pathTargetX = nextTile.x ;
+       int pathTargetX = nextTile.x*GameConstants.TILE_SIZE ;
        int pathTargetY = nextTile.y ;
        
        int pathDx = pathTargetX - (int)x;
@@ -99,38 +100,38 @@ public class Unit_Marin extends Unit {
   double dx = targetX - x;
   double dy = targetY -  y;
   double distance = Math.sqrt(dx * dx + dy * dy);
-
-  if (distance > speed) {
-//  	x += speed * dx / distance;
-//      y += speed * dy / distance;
-      
-//    유닛이 유닛을 못 밀게 하려고 추가했는데 결과가 이상해서 보류
-  	double moveX = (speed * dx / distance);
-      double moveY = (speed * dy / distance);
-
-      double newX = x + moveX;
-      double newY = y + moveY;
-      
-      Rectangle futureHitbox = getHitbox((int)newX, (int)newY);
-      
-      boolean blocked = false;
-      
-      for (Unit other : allUnits) {
-          if (other == this) continue; // 자기 자신 제외
-          
-
-          Rectangle otherHitbox = other.getHitbox((int)other.x, (int)other.y);
-
-          if (futureHitbox.intersects(otherHitbox)) {
-              blocked = true;
-              break;
-          }
-          
-      }
-      if (!blocked) {
-          x = newX;
-          y = newY;
-      }
+//
+//  if (distance > speed) {
+////  	x += speed * dx / distance;
+////      y += speed * dy / distance;
+//      
+////    유닛이 유닛을 못 밀게 하려고 추가했는데 결과가 이상해서 보류
+//  	double moveX = (speed * dx / distance);
+//      double moveY = (speed * dy / distance);
+//
+//      double newX = x + moveX;
+//      double newY = y + moveY;
+//      
+//      Rectangle futureHitbox = getHitbox((int)newX, (int)newY);
+//      
+//      boolean blocked = false;
+//      
+//      for (Unit other : allUnits) {
+//          if (other == this) continue; // 자기 자신 제외
+//          
+//
+//          Rectangle otherHitbox = other.getHitbox((int)other.x, (int)other.y);
+//
+//          if (futureHitbox.intersects(otherHitbox)) {
+//              blocked = true;
+//              break;
+//          }
+//          
+//      }
+//      if (!blocked) {
+//          x = newX;
+//          y = newY;
+//      }
 
       // 방향 업데이트
       direction = getDirectionFromDelta(dx, dy);
@@ -141,12 +142,12 @@ public class Unit_Marin extends Unit {
           frameTimer = 0;
           currentFrame = (currentFrame + 1) % frameCount;
       }
-  } else {
-      x = targetX;
-      y = targetY;
-      currentFrame = 0; 
-      //        	도착시 달달 떨리는거 없애는 용도
-  }
+//  } else {
+//      x = targetX;
+//      y = targetY;
+//      currentFrame = 0; 
+//      //        	도착시 달달 떨리는거 없애는 용도
+//  }
 
 
   for (Unit other : allUnits) {

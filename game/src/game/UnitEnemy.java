@@ -18,7 +18,7 @@ public class UnitEnemy extends Unit {
 	}
 	
 	   @Override
-	  public void update(List<Unit> allUnits,int[][] map) {
+	  public void update(List<Unit> allUnits) {
 	    	if (isDead) return;
 	    	
 	    	

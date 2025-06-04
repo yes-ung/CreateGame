@@ -26,9 +26,8 @@ public class GamePanel extends JPanel implements ActionListener, MouseListener, 
 	int mouseY = 0;
 	int worldClickX = 0;
 	int worldClickY = 0;
-	final int MAP_WIDTH = 2000;  //맵 최대넓이
-	final int MAP_HEIGHT = 1000; // 맵 최대높이
-	int[][] map = new int[MAP_WIDTH][MAP_HEIGHT];
+	public static final int MAP_WIDTH = 2048;  //맵 최대넓이
+	public static final int MAP_HEIGHT = 2048; // 맵 최대높이	
 	
 	int border = 20; // 경계 감지 거리	
 	Dimension screenSize = getSize(); // JPanel 크기
@@ -161,7 +160,7 @@ public class GamePanel extends JPanel implements ActionListener, MouseListener, 
     public void actionPerformed(ActionEvent e) {
 
         for (Unit t : allUnits) {
-            t.update( allUnits,map);
+            t.update( allUnits);
             t.resolveOverlap(allUnits); // 겹쳤을 경우 처리
          }
   
@@ -176,9 +175,9 @@ public class GamePanel extends JPanel implements ActionListener, MouseListener, 
         }
         //지도에 건물 좌표인식 (장애물로 인식)
         for (Building b : buildings) {
-            int tx = b.x ;
-            int ty = b.y ;
-            map[tx][ty] = 1;
+            int tx = (b.x/GameConstants.TILE_SIZE) ;
+            int ty = (b.y/GameConstants.TILE_SIZE) ;
+            GameConstants.MAP[tx][ty] = 1;
         }
      // 일시적으로 유닛을 길찾기 방해물로 취급
 //        for (Unit u : allUnits) {
