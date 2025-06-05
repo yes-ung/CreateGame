@@ -40,5 +40,20 @@ public class Quiz03Controller {
 		
 	}
 	
+	@GetMapping("qz03/quiz03.do")
+	public String quiz03(Model model,
+			@RequestParam(defaultValue = "")String eno,
+			@RequestParam(defaultValue = "")String ename,
+			@RequestParam(defaultValue = "")String job,
+			@RequestParam(defaultValue = "")String hiredate) {
+		List<String> list = new ArrayList<String>();
+		list.add(eno);
+		list.add(ename);
+		list.add(job);
+		list.add(hiredate);
+		model.addAttribute("list",list);
+		return "qz03/quiz03";
+	}
+	
 
 }

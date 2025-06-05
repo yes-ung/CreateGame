@@ -242,7 +242,7 @@ public class GamePanel extends JPanel implements ActionListener, MouseListener, 
 //마우스 동작 메소드
     @Override
     public void mouseClicked(MouseEvent e) {
-    	// 일시적으로 유닛을 길찾기 방해물로 취급        
+    	        
     	worldClickX = e.getX() + cameraX;
     	worldClickY = e.getY() + cameraY;
         handleRightClick(worldClickX, worldClickY,allUnits);
@@ -253,6 +253,7 @@ public class GamePanel extends JPanel implements ActionListener, MouseListener, 
         if (selectedBuilding != null && buttonRect.contains(e.getX(), e.getY())) {
             selectedBuilding.startBuilding();
         }
+       
         
     }
     @Override
@@ -379,6 +380,8 @@ public class GamePanel extends JPanel implements ActionListener, MouseListener, 
         for (Unit myUnit : allUnits) {
             if (myUnit.team == "1" && myUnit.isSelected) {
                 myUnit.setTarget(mx, my);
+                myUnit.setPath(AStarPathfinding.aStar(GameConstants.MAP, (int)myUnit.x/GameConstants.TILE_SIZE,
+			 (int)myUnit.y/GameConstants.TILE_SIZE, (int)mx/GameConstants.TILE_SIZE, (int)my/GameConstants.TILE_SIZE));
                 myUnit.targetEnemy = null;
             }
         }

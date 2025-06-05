@@ -11,10 +11,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Unit  {
+	
     double x, y;
     int intx = (int)x;  int inty = (int)y;
     double targetX, targetY;
-    int speed = 5;
+    int speed = 3;
     double radius = 30; //유닛범위 타원형 y=radius/2
     double range = 30; // 유닛범위 사각형 가로 range 세로 range/2
     boolean hasArrived = false; // 트루 도착 펄스 도착안함
@@ -32,6 +33,13 @@ public class Unit  {
     String team;
     Unit targetEnemy = null; // 현재 공격대상
     Unit self = this; //자기자신 지정
+//    List<Node> path = AStarPathfinding.aStar(GameConstants.MAP, (int)x/GameConstants.TILE_SIZE,
+//			 (int)y/GameConstants.TILE_SIZE, (int)x/GameConstants.TILE_SIZE, (int)y/GameConstants.TILE_SIZE);
+//    
+    List<Node> path;
+	 public void setPath(List<Node> path) {
+		 this.path = path;
+	 }
    
     
     
@@ -342,34 +350,35 @@ public class Unit  {
     
 //    이동 메소드
     public void moveTowardTarget(List<Unit> allUnits ) {
-    	List<Node> path = AStarPathfinding.aStar(GameConstants.MAP, (int)x, (int)y, (int)targetX, (int)targetY);
-    	if (path.isEmpty()) {
-            System.out.println("경로를 찾을 수 없습니다.");
-        } else {
-            System.out.println("경로:");
-            for (Node node : path) {
-                System.out.printf("(%d, %d)\n", node.x, node.y);
-            }
-    	if (path == null || path.isEmpty()) return;
     	
-    	 Node nextTile = path.get(0); // 다음 도착 지점 (타일 좌표)
-         int pathTargetX = nextTile.x ;
-         int pathTargetY = nextTile.y ;
-         
-         int pathDx = pathTargetX - (int)x;
-         int pathDy = pathTargetY - (int)y;
-         double pathDistance = Math.sqrt(pathDx * pathDx + pathDy * pathDy);
-         
-         if (pathDistance < speed) {
-             // 거의 도착했으면 해당 타일은 완료 → 다음 타일로 이동
-             x = pathTargetX;
-             y = pathTargetY;
-             path.remove(0); // 다음 목표로 진행
-         } else {
-             // 아직 도착 전이면 이동
-             x += speed * pathDx / pathDistance;
-             y += speed * pathDy / pathDistance;
-         }
+//    	if (path.isEmpty()) {
+//            System.out.println("경로를 찾을 수 없습니다.");
+//        } else {
+//            System.out.println("경로:");
+//            for (Node node : path) {
+//                System.out.printf("(%d, %d)\n", node.x, node.y);
+//            }
+//    	if (path == null || path.isEmpty()) return;
+//    	for (Node node : path) {
+//    	 Node nextTile = path.get(0); // 다음 도착 지점 (타일 좌표)
+//         int pathTargetX = nextTile.x ;
+//         int pathTargetY = nextTile.y ;
+//         
+//         int pathDx = pathTargetX - (int)this.x;
+//         int pathDy = pathTargetY - (int)this.y;
+//         double pathDistance = Math.sqrt(pathDx * pathDx + pathDy * pathDy);
+//         
+//         if (pathDistance < speed) {
+//             // 거의 도착했으면 해당 타일은 완료 → 다음 타일로 이동
+//             x = pathTargetX;
+//             y = pathTargetY;
+//             path.remove(0); // 다음 목표로 진행
+//         } else {
+//             // 아직 도착 전이면 이동
+//             x += speed * pathDx / pathDistance;
+//             y += speed * pathDy / pathDistance;
+//         }
+//    	}
     	
     	
   //목적지 근처 도착했으면 안움직이게 하기
@@ -421,8 +430,7 @@ public class Unit  {
         }
     } else {
         x = targetX;
-        y = targetY;
-        currentFrame = 0; 
+        y = targetY; 
         //        	도착시 달달 떨리는거 없애는 용도
     }
 
@@ -434,7 +442,7 @@ public class Unit  {
         }
       } // 도착지점 근처이며 유닛과 충돌했을경우 도착지점까지 도달안해도 완료된걸로 보고 멈추기 
     } 
-    }
+    
 
 
     public void draw(Graphics g, int cameraX , int cameraY) {

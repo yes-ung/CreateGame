@@ -10,10 +10,10 @@ import java.util.List;
 
 public class GamePanel extends JPanel implements ActionListener, MouseListener {
     Timer timer;
-    List<Unit> units = new ArrayList<>();
-    List<Unit> enemys = new ArrayList<>();
-    List<Unit> test = new ArrayList<>();
-    List<Unit> allUnits = new ArrayList<>(); //소환된 모든 진영유닛 한번에 선택
+    List<Unit05_23> units = new ArrayList<>();
+    List<Unit05_23> enemys = new ArrayList<>();
+    List<Unit05_23> test = new ArrayList<>();
+    List<Unit05_23> allUnits = new ArrayList<>(); //소환된 모든 진영유닛 한번에 선택
     
 //  배경화면 삽입용@@@@@@@@@@@@@@@@@@@    
     private BufferedImage backgroundImage;
@@ -30,10 +30,10 @@ public class GamePanel extends JPanel implements ActionListener, MouseListener {
 //        setBackground(Color.blue); //(배경이미지 없을때 배경 단색으로 쓸 때)
         addMouseListener(this);
         
-       units.add(new Unit(100, 100,"1"));
-       units.add(new Unit(100, 110, "1"));
-       units.add(new Unit(100, 120, "1"));
-       units.add(new Unit(100, 130, "1"));
+       units.add(new Unit05_23(100, 100,"1"));
+       units.add(new Unit05_23(100, 110, "1"));
+       units.add(new Unit05_23(100, 120, "1"));
+       units.add(new Unit05_23(100, 130, "1"));
        enemys.add(new UnitEnemy(600, 400, "2"));
        enemys.add(new UnitEnemy(600, 400, "2"));
        enemys.add(new UnitEnemy(600, 400, "2"));
@@ -62,13 +62,13 @@ public class GamePanel extends JPanel implements ActionListener, MouseListener {
             g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
         }
        //유닛 그리기 
-        for (Unit u : units) {
+        for (Unit05_23 u : units) {
             u.draw(g);
         }
-        for (Unit en : enemys) {
+        for (Unit05_23 en : enemys) {
             en.draw(g);
         }
-        for (Unit t : test) {
+        for (Unit05_23 t : test) {
             t.draw(g);
         }
         
@@ -79,7 +79,7 @@ public class GamePanel extends JPanel implements ActionListener, MouseListener {
     //케릭터 움직임 실시간 업데이트 메소드
     public void actionPerformed(ActionEvent e) {
 
-        for (Unit t : allUnits) {
+        for (Unit05_23 t : allUnits) {
             t.update( allUnits);
             
         }
@@ -87,8 +87,8 @@ public class GamePanel extends JPanel implements ActionListener, MouseListener {
 //        유닛충돌 해소@@@@@@@
         for (int i = 0; i < allUnits.size(); i++) {
             for (int j = i + 1; j < allUnits.size(); j++) {
-                Unit u1 = allUnits.get(i);
-                Unit u2 = allUnits.get(j);
+                Unit05_23 u1 = allUnits.get(i);
+                Unit05_23 u2 = allUnits.get(j);
 
                 if (u1.isColliding(u2)) {
                     u1.resolveCollision(u2);
@@ -102,7 +102,7 @@ public class GamePanel extends JPanel implements ActionListener, MouseListener {
     }
 //마우스 동작 메소드
     public void mouseClicked(MouseEvent e) {
-        for (Unit u : units) {
+        for (Unit05_23 u : units) {
             u.setTarget(e.getX(), e.getY());
         }
     }

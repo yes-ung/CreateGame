@@ -4,7 +4,7 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.util.List;
 
-public class UnitEnemy extends Unit {
+public class UnitEnemy extends Unit05_23 {
 	
 	
 
@@ -14,7 +14,7 @@ public class UnitEnemy extends Unit {
 	}
 	
 	   @Override
-	  public void update(List<Unit> allUnits) {
+	  public void update(List<Unit05_23> allUnits) {
 	    	if (isDead) return;
 	    	this.speed =3;
 	    	this.maxHP =1000;
