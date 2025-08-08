@@ -1,0 +1,906 @@
+html, body {
+    touch-action: none;  /*모든 터치기능 정지*/
+    height: 100vh;
+    min-height: -webkit-fill-available;
+    box-sizing: border-box;
+}
+
+body{
+    margin:0;
+    padding:0;
+    height: 100%;
+    overflow:hidden;
+    /* 더블탭 확대 방지 */
+    /*touch-action: manipulation; */
+}
+div#pageCover{
+    width:100%;
+    height:100%;
+    margin: 0 auto;
+    background-color: rgba(255, 255, 0, 0.1); /* 살짝 투명한 노란 배경 */
+
+
+}
+div.GameLayer{
+    /* min-width: 450px; */
+    aspect-ratio: 9/16;
+    height:100%;
+    position:absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* display:none; */
+    /* 커서모양 아직 미정 * .icon 파일로 지정/
+    /* cursor:url(),auto; */
+    border: 1px solid red;
+    background-color: rgba(255, 0, 0, 0.1); /* 살짝 투명한 빨간 배경 */
+}
+.GameLayer img{
+    width:100%;
+    height:100%;
+    position:absolute;
+    /*배경 맨 뒤로 */
+    z-index:-1; 
+}
+/* div.GameLayer[status="button"]{
+    cursor:url('../img/Menu/cursorLocating.ico'),auto;
+} */
+#backCanvas{
+    position:absolute; 
+    z-index:-1;
+    background-color: black;
+}
+#middleCanvas{
+    position:absolute;
+    z-index:0;
+}
+#frontCanvas{
+    position:absolute;
+    z-index:1;
+}
+#fogCanvas{
+    position:absolute;
+    z-index:2;
+}
+#GameLoading{
+    text-align:center;
+    font:bold 25px Arial; 
+    color:red;
+}
+.LoadingDiv{
+    width:60%;
+    height:12%;
+    position:absolute;
+    left:50%;
+    margin-left:-30%;
+    top:50%;
+    margin-top:-6%;
+    padding:0;
+}
+.LoadingMsg{
+    width:100%;
+    height:50%;
+    text-align:center;
+    font:bold 25px Georgia,Verdana;
+    color:rgb(135, 183, 255);
+}
+.LoadingBlock{
+    width:100%;
+    height:50%;
+    background-color:gray;
+}
+.LoadedBlock{
+    width:0;
+    height:100%;
+    background-color:red;
+}
+
+/* 공통 사용 UI 이미지 아래 */
+.fixedBox{
+    position: fixed !important;
+}
+
+.UiBack1{ 
+    /* position:absolute;   */
+   
+background-image: url("../img/Menu/버튼배경.png") ;
+}
+.BackButton{
+    position: absolute;
+    right: 2%;
+    bottom:1%;
+    width: 20%; height: 7%;
+    font-size: 2.5vh;
+    display: flex;
+    justify-content: center; /* 가로 중앙 */
+    align-items: center;     /* 세로 중앙 */
+    background-image: url("../img/Menu/기본버튼.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100% 100%;
+    cursor: pointer;
+}
+.BackButton:hover{
+    background-image: url("../img/Menu/기본버튼클릭.png");
+}
+.BackButton:active{
+    background-image: url("../img/Menu/기본버튼.png");
+    opacity: 0.7;
+}
+/* 공통 사용 UI 이미지 위 */
+
+ /* 로비화면 아래 */
+/* 로비화면 메뉴버튼 */
+.menuSelectionBg{
+    position:absolute;
+    left:0;
+    bottom:0;
+    width:100%;
+    height:15%;
+    /* background-color:rgba(128, 128, 128, 0.486); */
+    /* 투명도 */
+    /* opacity: 0.6;   */
+    overflow:hidden;
+}
+div#GameStart  .menuButton{
+    position:absolute;
+    width: 24%;
+    height: 50%;
+    /* border: 3px solid yellow; */
+    margin: 4vh auto;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100% 100%;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;   /* 가로 가운데 */
+    align-items: center;       /* 세로 가운데 */
+    font:normal 2.5vh Georgia,Verdana;
+}
+ .goStageButton {
+    
+    left:1%;
+    bottom:0;
+    background-image: url("../img/Menu/기본버튼.png");
+}
+.goStageButton:hover {
+    background-image: url("../img/Menu/기본버튼클릭.png");
+    /* opacity: 0.7; */
+}
+.goStageButton:active {
+    background-image: url("../img/Menu/기본버튼.png");
+    opacity: 0.7;
+}
+ .goStoreButton {
+    
+    left: 25.5%;
+    bottom:0;
+    background-image: url("../img/Menu/기본버튼.png");
+}
+.goStoreButton:hover {
+    background-image: url("../img/Menu/기본버튼클릭.png");
+    /* opacity: 0.7; */
+}
+.goStoreButton:active {
+    background-image: url("../img/Menu/기본버튼.png");
+    opacity: 0.7;
+}
+.goBarracksButton {
+    right:1%;
+    bottom:0;
+    background-image: url("../img/Menu/기본버튼.png");
+}
+.goBarracksButton:hover {
+    background-image: url("../img/Menu/기본버튼클릭.png");
+    /* opacity: 0.7; */
+}
+.goBarracksButton:active {
+    background-image: url("../img/Menu/기본버튼.png");
+    opacity: 0.7;
+}
+/* .levelItem input[type="radio"] {
+    cursor: pointer;
+    margin-right:5px;
+} */
+.goRecruitmentButton{
+    right: 25.5%;
+    bottom: 0;
+    background-image: url("../img/Menu/기본버튼.png");
+}
+.goRecruitmentButton:hover {
+    background-image: url("../img/Menu/기본버튼클릭.png");
+    /* opacity: 0.7; */
+}
+.goRecruitmentButton:active {
+    background-image: url("../img/Menu/기본버튼.png");
+    opacity: 0.7;
+}
+/* 로비 화면 위 */
+
+/* 스테이지 화면   아래 */
+div#GameStage{
+    position: relative;
+    /*height: 100vh;*/
+    overflow: hidden; /* ✅ 자식 요소가 넘쳐도 부모는 고정 크기 유지 */
+}
+div#GameStage .StageButtonWrapper{
+    margin: 5vh 0;
+    width: 100%;
+    
+    
+}
+div.StageSearch{
+    position: relative;
+    display: flex;
+    margin-left: 4vh;
+    margin-bottom: 25vh;
+}
+div.StageSearch  #slideInput{
+margin-top: 0.5vh;
+    width: 20vh;
+    height: 3vh;
+    border: 1px solid #ccc;
+    border-radius: 7px;
+    font-size: 2vh;
+    outline: none;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.1), 0 2px 5px rgba(0,0,0,0.1);
+    transition: all 0.2s ease;
+}
+div.StageSearch  #slideInput:focus{
+    border-color: #66afe9;
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.1), 0 0 8px rgba(102,175,233,0.6);
+}
+div.StageSearch #goToSlideBtn{
+    font-size: 2vh;
+    margin-left: 1vh;
+    position: static !important;
+    width: 7vh; height: 5vh !important;
+
+}
+.sliderArrows {
+    position: relative;
+    width: 100%;
+    margin-top: 2vh;
+    height: 8vh; /* 버튼 높이에 맞게 설정 */
+}
+
+.prevArrow,
+.nextArrow {
+    position: absolute;
+    top: 0;
+    width: 10vh;
+    height: 100%;
+    color: white;
+    cursor: pointer;
+}
+
+.prevArrow {
+    left: 2vh;
+}
+
+.nextArrow {
+    right: 2vh;
+}
+
+
+div#GameStage .StageButtonCover{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid red;
+}
+div#GameStage .StageButtonSlider {
+     display: flex;
+    overflow-x: hidden;    /* ✅ 가로 스크롤 자체를 숨김 */
+    white-space: nowrap;
+    width: 100%;
+}
+div#GameStage div.StageButton{
+    /* 이 슬라이드 플러그인은 가로 지정이 안됨 */
+    width: 20vh;
+    height: 20vh;
+    box-sizing: border-box;
+    margin: 0 3vh;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100% 100%;
+    cursor: pointer;
+    opacity: 0.9;
+}
+div#GameStage  div.StageButton:hover{
+    opacity: 0.7;
+}
+div#GameStage div.StageButton1 {
+    background-image: url("../img/Menu/스테이지버튼1(임시).png");
+}
+div#GameStage div.StageButton2 {
+    background-image: url("../img/Menu/스테이지버튼2(임시).png");
+}
+div#GameStage div.StageButton3 {
+    background-image: url("../img/Menu/스테이지버튼3(임시).png");
+}
+div#GameStage div.StageButton4 {
+    background-image: url("../img/Menu/스테이지버튼4(임시).png");
+}
+div#GameStage div.StageButton5 {
+    background-image: url("../img/Menu/스테이지버튼5(임시).png");
+}
+div#GameStage div.StageButton6 {
+    background-image: url("../img/Menu/스테이지버튼6(임시).png");
+}
+
+div#GameStage .UiBack1{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 10%;
+}
+div#GameStage div.BackButton{
+    bottom: 10%;
+    height: 60%;
+}    
+ 
+/* 스테이지 화면   위 */
+
+/* 병영관리 화면 아래 */
+div#GameBarracks  .BarracksBuilding{
+    position:absolute;
+    width: 50%;
+    height: 25%;
+    border: 1px solid red;
+    margin: 0 auto;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100% 100%;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;   /* 가로 가운데 */
+    align-items: center;       /* 세로 가운데 */
+    font:normal 2.5vh Georgia,Verdana;
+    
+}
+div#GameBarracks .BarracksBuilding img {
+    width: 100%;
+    height: auto;
+    z-index: 1;
+}
+
+div#GameBarracks  .BarracksBuilding img:hover{
+    opacity: 0.8;
+
+}
+
+div#GameBarracks  .BarracksBuilding img:active{
+    opacity: 0.5;
+}
+
+div#GameBarracks  .BarrackB{
+    left:50%;
+ }
+div#GameBarracks  .BarracksInfo{
+ position: absolute;
+ bottom: 0;
+ width: 100%;
+ height: 30%;
+ border: 1px solid blue;
+ overflow: visible;
+ display:none
+}
+div#GameBarracks  .BarracksInfo img{
+    position: absolute;
+    z-index: -1;
+    top: -120%;
+    right: 0;
+    width: 50%;
+    height: auto;
+    pointer-events: none; /* 클릭 불가 처리 */
+}
+div#GameBarracks  .BarracksInfo .BackButton{
+     bottom:4%;
+     height: 17%;
+}
+div#GameBarracks  .BarracksInfo h1{
+    
+    font-size: 4vh;
+    position: absolute;
+    top: -2vh;
+    left: 2vh;
+}
+div#GameBarracks  .BarracksInfo h5{
+    font-size: 2vh;
+    position: absolute;
+    top: -1vh;
+    right: 2vh;
+    color:gainsboro;
+}
+
+/* 병영관리 화면 위 */
+
+/* 모집화면 아래 */
+
+.RecruitmentBenner1{   
+    position: absolute;
+    width: 100%;
+    height: 40%;
+    border: 1px solid red;
+    
+
+}
+.RecruitmentBenner1Button{
+    position: absolute;
+    right: 1vh;
+    bottom:1vh;
+   width: 12vh; height: 7vh;
+   font-size: 2.5vh;
+   border: 1px solid skyblue;
+   display: flex;
+  justify-content: center; /* 가로 중앙 */
+  align-items: center;     /* 세로 중앙 */
+
+}
+.RecruitmentBenner2{
+    position: absolute;
+    top: 40%;
+    width: 100%;
+    height: 40%;
+    border: 1px solid blue;
+    
+
+}
+.RecruitmentBenner2Button{
+    position: absolute;
+    right: 1vh;
+    bottom:1vh;
+    width: 12vh; height: 7vh;
+    font-size: 2.5vh;
+   border: 1px solid skyblue;
+   display: flex;
+  justify-content: center; /* 가로 중앙 */
+  align-items: center;     /* 세로 중앙 */
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* 모집화면 위 */
+div#GamePlay{
+    overflow:hidden;
+}
+div#GamePlay div {
+    position:absolute;
+    z-index:10;
+}
+div#GamePlay div.panel_Map {
+    left:0;
+    bottom:0;
+    width:145px;
+    height:165px;
+    background-image: url('../img/Menu/ControlPanel.png');
+}
+div#GamePlay div.panel_Info {
+    left:145px;
+    bottom:0;
+    height:110px;
+    background:black none;
+    background-clip:content-box;
+}
+div#GamePlay div.panel_Info div.infoLeft {
+    left:10%;
+    top:0;
+    width:200px;
+    height:100%;
+}
+div#GamePlay div.panel_Info div.infoLeft div {
+    position:relative;
+    margin:0 auto 1px auto;
+    font:bold 12px Verdana,Arial;
+}
+div#GamePlay div.panel_Info div.infoLeft div[name="portrait"] {
+    width:60px;
+    height:56px;
+    margin-top:12px;
+    background-image:url('../img/Charas/Portrait.png');
+}
+div.infoLeft div#HP_SP,div.infoLeft div#MP {
+    width:100%;
+    text-align:center;
+}
+div.panel_Info>div{
+    display:none;
+}
+ div.infoLeft span._Health {
+    color:green;
+}
+div.infoLeft span._Shield {
+    color:white;
+}
+div.infoLeft span._Magic {
+    color:darkviolet;
+}
+div#GamePlay div.panel_Info div.infoCenter {
+    left:45%;
+    top:0;
+    width:300px;
+    height:100%;
+    color:white;
+}
+div#GamePlay div.panel_Info div.infoCenter h3 {
+    margin:0;
+    font:18px Verdana,Arial;
+}
+div#GamePlay div.panel_Info div.infoCenter p {
+    margin:2px 0;
+    font:12px Verdana,Arial;
+}
+div#GamePlay div.panel_Info div.infoCenter p.detector {
+    color:yellow;
+}
+div#GamePlay div.panel_Info div.infoCenter p.icons span {
+    display:inline-block;
+    width:36px;
+    height:34px;
+    background-image: url('../img/Menu/CmdIcons.png');
+    border:2px solid white;
+    border-radius:6px;
+    margin-right:1px;
+}
+div#GamePlay div.panel_Info div.infoRight {
+    right:10px;
+    top:0;
+    width:200px;
+    height:100%;
+}
+div.infoRight>div{
+    width:100%;
+    height:34px;
+    padding:0 2px;
+    border:2px solid;
+    border-radius:6px;
+    color:white;
+    font:bold 0.6em Verdana,Arial;
+    vertical-align:middle;
+    line-height:34px;
+    display:none;
+}
+div.infoRight div.upgraded{
+    top:10px;
+    border-color:lime;
+}
+div.infoRight div.upgrading{
+    bottom:10px;
+    border-color:blue;
+}
+div.infoRight div[name='icon']{
+    width:32px;
+    height:34px;
+    background-image: url('../img/Menu/CmdIcons.png');
+    /*For text inside icon*/
+    color:red;
+    font:bolder 1.8em Verdana,Arial;
+    text-align:right;
+    line-height:46px;
+    vertical-align:bottom;
+}
+div#GamePlay div.infoRight div.upgraded div[name='icon']{
+    position:relative;
+    display:inline-block;
+}
+div.infoRight div[name='icon'][disabled='true']{
+    background-image: url('../img/Menu/CmdIconsDisabled.png');
+}
+div.infoRight div.upgrading div[name='processing']{
+    right:6px;
+    width:156px;
+    height:100%;
+    text-align:center;
+    color:white;
+    font:bold 0.6em Arial;
+}
+div.infoRight div.upgrading div.processBar{
+    width:100%;
+    height:14px;
+    background:url('../img/Menu/Thingy.png') 0 -14px;
+}
+div.infoRight div.upgrading div.processedBar{
+    height:100%;
+    background:url('../img/Menu/Thingy.png') 0 -28px;
+}
+div#GamePlay div.panel_Control {
+    right:0;
+    bottom:0;
+    width:150px;
+    height:155px;
+    background-image: url('../img/Menu/ControlPanel.png');
+}
+div#GamePlay div.panel_Info {
+    border-width:22px 0 0 0;
+    border-style:solid;
+}
+div#GamePlay[race="Zerg"] div.panel_Map {
+    background-position: 0 bottom;
+}
+div#GamePlay[race="Zerg"] div.panel_Info {
+    /* -webkit-,-o- 구형 브라우저에서 구현위해 추가 */
+    -webkit-border-image: url('../img/Menu/ControlPanel.png') 22 1265 0 163 repeat;
+    -o-border-image: url('../img/Menu/ControlPanel.png') 22 1265 0 163 repeat;
+    border-image: url('../img/Menu/ControlPanel.png') 22 1265 0 163 repeat;
+}
+div#GamePlay[race="Zerg"] div.panel_Control {
+    background-position: -400px bottom;
+}
+div#GamePlay[race="Protoss"] div.panel_Map {
+    background-position: -555px bottom;
+}
+div#GamePlay[race="Protoss"] div.panel_Info {
+    -webkit-border-image: url('../img/Menu/ControlPanel.png') 22 743 0 745 repeat;
+    -o-border-image: url('../img/Menu/ControlPanel.png') 22 743 0 745 repeat;
+    border-image: url('../img/Menu/ControlPanel.png') 22 743 0 745 repeat;
+}
+div#GamePlay[race="Protoss"] div.panel_Control {
+    background-position: -958px bottom;
+}
+div#GamePlay[race="Terran"] div.panel_Map {
+    background-position: -1110px bottom;
+}
+div#GamePlay[race="Terran"] div.panel_Info {
+    -webkit-border-image: url('../img/Menu/ControlPanel.png') 22 149 0 1284 repeat;
+    -o-border-image: url('../img/Menu/ControlPanel.png') 22 149 0 1284 repeat;
+    border-image: url('../img/Menu/ControlPanel.png') 22 149 0 1284 repeat;
+}
+div#GamePlay[race="Terran"] div.panel_Control {
+    background-position: -1516px bottom;
+}
+div#GamePlay div.panel_Info div.override{
+    width:100%;
+    height:100%;
+    background:black;
+    position:relative;
+}
+div#GamePlay div.panel_Info div.override div{
+    position:relative;
+}
+div#GamePlay div.override div.multiSelection{
+    margin:0 auto;
+    width:330px;
+    height:104px;
+    overflow:hidden;
+    display:none;
+}
+div#GamePlay div.panel_Info div.override div.multiSelection div{
+    float:left;
+    width:45px;
+    height:42px;
+    background-image:url('../img/Charas/Portrait.png');
+    background-size:720px 210px;
+    border:3px solid white;
+    border-radius:6px;
+    margin:2px;
+}
+div#GamePlay div.warning_Box {
+    width:400px;
+    height:30px;
+    left:50%;
+    margin-left:-200px;
+    background: rgba(255,255,255,0.3);
+    text-align:center;
+    line-height:30px;
+    font:bold 24px Verdana,Arial;
+    color:red;
+    display:none;
+}
+div#GamePlay div#cheat_Box {
+    width:400px;
+    height:30px;
+    text-align:center;
+    left:50%;
+    margin-left:-200px;
+    bottom:130px;
+    font:bold 15px Verdana,Arial;
+    color:white;
+    display:none;
+}
+div#GamePlay div#cheat_Box input#cheatInput {
+    width:300px;
+    background-color:transparent;
+    border-top:none;
+    border-left:none;
+    border-right:none;
+    border-bottom:2px solid white;
+    font:bold 1em Arial;
+    color:white;
+}
+div#GamePlay div.message_Box {
+    width:400px;
+    left:50%;
+    margin-left:-200px;
+    bottom:140px;
+    text-align:center;
+    font:bolder 0.8em Verdana,Arial;
+    color:white;
+    display:none;
+}
+div#GamePlay div.message_Box p {
+    margin:0;
+}
+div#GamePlay div.resource_Box {
+    right:30px;
+    top:20px;
+    font:bolder 1em Verdana,Arial;
+    color: #00ff00;
+}
+div#GamePlay div.resource_Box div, div#GamePlay div.tooltip_Box div.cost div{
+    position:relative;
+    width:14px;
+    height:14px;
+    background-image:url('../img/Menu/Thingy.png');
+    display:inline-block;
+}
+div#GamePlay div.mine{
+    background-position:0 0;
+}
+div#GamePlay[race="Zerg"] div.gas{
+    background-position:-14px 0;
+}
+div#GamePlay[race="Terran"] div.gas{
+    background-position:-28px 0;
+}
+div#GamePlay[race="Protoss"] div.gas{
+    background-position:-42px 0;
+}
+div#GamePlay[race="Zerg"] div.man{
+    background-position:-56px 0;
+}
+div#GamePlay[race="Terran"] div.man{
+    background-position:-70px 0;
+}
+div#GamePlay[race="Protoss"] div.man{
+    background-position:-84px 0;
+}
+div#GamePlay div.magic{
+    background-position:-98px 0;
+}
+/* 맨 위에 뜨는 자원 간견 */
+div#GamePlay div.resource_Box>span{
+    position:relative;
+    min-width:50px;
+    display:inline-block;
+}
+div#GamePlay div.tooltip_Box {
+    font:bold 0.8em Arial;
+    color:white;
+    background:black none;
+    border:2px solid blue;
+    padding-right:10px;
+    display:none;
+}
+div#GamePlay div.tooltip_Box *{
+    vertical-align:top;
+    position:relative;
+    display:none;
+}
+div#GamePlay div.tooltip_Box div.itemName{
+    /* 첫글자 대문자로 */
+    text-transform:capitalize;
+    /* 글자를 블럭으로 */
+    display:block;
+}
+/* For mobile */
+@media screen and (max-width: 700px){
+    .levelSelectionBg{
+        transform:scale(0.7);
+        transform-origin:bottom;
+        -ms-transform:scale(0.7);
+        -ms-transform-origin:bottom;
+        -moz-transform:scale(0.7);
+        -moz-transform-origin:bottom;
+        -webkit-transform:scale(0.7);
+        -webkit-transform-origin:bottom;
+        -o-transform:scale(0.7);
+        -o-transform-origin:bottom;
+    }
+    div#GamePlay div.panel_Info div.infoLeft {
+        left:5px;
+        width:auto;
+    }
+    div#GamePlay div.panel_Info div.infoLeft div {
+        font-size:10px;
+    }
+    div#GamePlay div.panel_Info div.infoCenter {
+        left:30%;
+        width:auto;
+    }
+    div#GamePlay div.panel_Info div.infoRight {
+        width:160px;
+        transform:scale(0.8);
+        transform-origin:right;
+        -ms-transform:scale(0.8);
+        -ms-transform-origin:right;
+        -moz-transform:scale(0.8);
+        -moz-transform-origin:right;
+        -webkit-transform:scale(0.8);
+        -webkit-transform-origin:right;
+        -o-transform:scale(0.8);
+        -o-transform-origin:right;
+    }
+    div.infoRight div.upgrading div[name='processing']{
+        right:0;
+        transform:scaleX(0.8);
+        transform-origin:right;
+        -ms-transform:scaleX(0.8);
+        -ms-transform-origin:right;
+        -moz-transform:scaleX(0.8);
+        -moz-transform-origin:right;
+        -webkit-transform:scaleX(0.8);
+        -webkit-transform-origin:right;
+        -o-transform:scaleX(0.8);
+        -o-transform-origin:right;
+    }
+}
+/* For mobile */
+
+
+
+/**/
+/**/
+/**/
+/**/
+/**/
+/**/
+/**/
+/**/
+
+
+
+@media screen and (max-width: 499px){
+
+/*    !* 스테이지 화면   아래 *!*/
+    div#GameStage{
+
+
+        aspect-ratio: auto;     /* ✅ 비율 강제 해제 */
+        width: 100vw;           /* ✅ 뷰포트 가로 전체 */
+        height: 100vh;          /* ✅ 뷰포트 세로 전체 */
+        object-fit: cover;      /* (이미지/비디오일 경우) */
+        position: relative;
+        overflow: hidden; /* ✅ 자식 요소가 넘쳐도 부모는 고정 크기 유지 */
+
+    }
+    div.GameLayer{
+        aspect-ratio: auto;     /* ✅ 비율 강제 해제 */
+        width: 100vw;           /* ✅ 뷰포트 가로 전체 */
+        height: 100vh;          /* ✅ 뷰포트 세로 전체 */
+        object-fit: cover;      /* (이미지/비디오일 경우) */
+    }
+
+ }
+/* 가로가 긴 화면  */
+/*@media (min-aspect-ratio: 10/16) {*/
+/*    div#GameBarracks  .BarracksInfo img {*/
+/*        width: 33%;*/
+/*        !*top: -120%; !* 더 위로 올리지 않도록 값 조절 *!*!*/
+/*    }*/
+/*}*/
+
+/* 세로가 긴 화면 (예: 일반적인 9:16 이상) */
+@media (max-aspect-ratio: 9/16) {
+    div#GameBarracks  .BarracksInfo img {
+        top: -110%;
+    }
+}
+/* 세로가 엄청 긴 화면 (예: 9:16 이상 울트라와이드 등) */
+@media (max-aspect-ratio: 9/19) {
+    div#GameBarracks  .BarracksInfo img {
+        top: -100%;
+    }
+}
