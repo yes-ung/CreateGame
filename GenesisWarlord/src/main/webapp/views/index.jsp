@@ -1,19 +1,23 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: user
-  Date: 25. 7. 24.
-  Time: 오전 11:18
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page import="java.util.*" %>
 <%@ page import="com.fasterxml.jackson.databind.ObjectMapper" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="ko">
+<head
+        prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# website: http://ogp.me/ns/website#"
+>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+            id="viewport"
+            name="viewport"
+            content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+    />
     <title>게임 제작중</title>
+    <meta name="title" content="창세기 군주전" />
+    <meta
+            name="description"
+            content="아직 주인이 없어 혼란스러운 세상속, 새로운 질서를 세우기 위해 고군분투하는 군주들의 이야기! &#34;Beta Test&#34; 버전입니다."
+    />
     <link rel="stylesheet" href="Utils/slick.css" />
     <!-- <link rel="stylesheet" href="Utils/prism.css" />
     <link rel="stylesheet" href="Utils/tiny-slider.css" /> -->
