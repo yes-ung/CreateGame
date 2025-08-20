@@ -5,7 +5,7 @@ const { ccclass, property } = cc._decorator;
 export default class SceneChanger extends cc.Component {
 
     @property(cc.String)
-    sceneName = '';  // 이동할 씬 이름
+    sceneName = 'Stage';  // 이동할 씬 이름
 
     changeScene() {
         if (this.sceneName) {
