@@ -1,0 +1,38 @@
+{
+  "ver": "2.3.7",
+  "uuid": "62076fc2-970a-4356-bb67-bcce0547a110",
+  "importer": "texture",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 512,
+  "height": 768,
+  "platformSettings": {},
+  "subMetas": {
+    "임시대장장이": {
+      "ver": "1.0.6",
+      "uuid": "a3de130c-e8cc-46f1-bf46-be50cbd1d169",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "62076fc2-970a-4356-bb67-bcce0547a110",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": -10.5,
+      "offsetY": -11.5,
+      "trimX": 1,
+      "trimY": 23,
+      "width": 489,
+      "height": 745,
+      "rawWidth": 512,
+      "rawHeight": 768,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

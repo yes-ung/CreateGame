@@ -1,0 +1,38 @@
+{
+  "ver": "2.3.7",
+  "uuid": "fee10b00-09a6-497f-83c7-1a9821b02db5",
+  "importer": "texture",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 640,
+  "height": 480,
+  "platformSettings": {},
+  "subMetas": {
+    "병영관리(임시)": {
+      "ver": "1.0.6",
+      "uuid": "fea8e982-1879-458b-833c-a03880c8f62a",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "fee10b00-09a6-497f-83c7-1a9821b02db5",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 640,
+      "height": 480,
+      "rawWidth": 640,
+      "rawHeight": 480,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

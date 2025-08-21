@@ -1,0 +1,38 @@
+{
+  "ver": "2.3.7",
+  "uuid": "d6c82bcc-ab04-46c0-8951-1541d115434c",
+  "importer": "texture",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 768,
+  "height": 672,
+  "platformSettings": {},
+  "subMetas": {
+    "Dragoon": {
+      "ver": "1.0.6",
+      "uuid": "ad8e06ec-4d93-4f68-b838-235846cdf926",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "d6c82bcc-ab04-46c0-8951-1541d115434c",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": -6.5,
+      "offsetY": -10.5,
+      "trimX": 12,
+      "trimY": 25,
+      "width": 731,
+      "height": 643,
+      "rawWidth": 768,
+      "rawHeight": 672,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

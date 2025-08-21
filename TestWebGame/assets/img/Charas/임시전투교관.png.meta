@@ -1,0 +1,38 @@
+{
+  "ver": "2.3.7",
+  "uuid": "92ec0880-e25d-4df5-884a-cea9c2738159",
+  "importer": "texture",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 512,
+  "height": 768,
+  "platformSettings": {},
+  "subMetas": {
+    "임시전투교관": {
+      "ver": "1.0.6",
+      "uuid": "c7b53dc2-bf56-40f2-b840-91e2b67f4c54",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "92ec0880-e25d-4df5-884a-cea9c2738159",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": -15.5,
+      "offsetY": -28,
+      "trimX": 4,
+      "trimY": 56,
+      "width": 473,
+      "height": 712,
+      "rawWidth": 512,
+      "rawHeight": 768,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

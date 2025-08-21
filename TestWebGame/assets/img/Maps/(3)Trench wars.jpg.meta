@@ -1,0 +1,38 @@
+{
+  "ver": "2.3.7",
+  "uuid": "b2ca9aae-5bf7-469d-8d73-322f4eeb05f2",
+  "importer": "texture",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 3072,
+  "height": 3072,
+  "platformSettings": {},
+  "subMetas": {
+    "(3)Trench wars": {
+      "ver": "1.0.6",
+      "uuid": "9a0cfb29-0b28-4cd0-8709-1c7cb12c769e",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "b2ca9aae-5bf7-469d-8d73-322f4eeb05f2",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 3072,
+      "height": 3072,
+      "rawWidth": 3072,
+      "rawHeight": 3072,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

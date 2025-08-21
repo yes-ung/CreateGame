@@ -1,0 +1,38 @@
+{
+  "ver": "2.3.7",
+  "uuid": "ac24767c-5b54-492e-9106-12aed1949f04",
+  "importer": "texture",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 468,
+  "height": 782,
+  "platformSettings": {},
+  "subMetas": {
+    "CmdIcons": {
+      "ver": "1.0.6",
+      "uuid": "d827df58-c9c4-4204-a8d6-4848c8ec9998",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "ac24767c-5b54-492e-9106-12aed1949f04",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 468,
+      "height": 782,
+      "rawWidth": 468,
+      "rawHeight": 782,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

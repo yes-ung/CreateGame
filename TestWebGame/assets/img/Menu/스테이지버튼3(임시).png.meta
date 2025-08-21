@@ -1,0 +1,38 @@
+{
+  "ver": "2.3.7",
+  "uuid": "be77a931-3c31-4f71-8411-b4e3bcd371f6",
+  "importer": "texture",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 124,
+  "height": 141,
+  "platformSettings": {},
+  "subMetas": {
+    "스테이지버튼3(임시)": {
+      "ver": "1.0.6",
+      "uuid": "63aa3cd6-d359-465e-9768-3223b737d166",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "be77a931-3c31-4f71-8411-b4e3bcd371f6",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 124,
+      "height": 141,
+      "rawWidth": 124,
+      "rawHeight": 141,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

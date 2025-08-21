@@ -1,0 +1,38 @@
+{
+  "ver": "2.3.7",
+  "uuid": "7365931f-7cf9-4ce3-9f5d-032645dc52a3",
+  "importer": "texture",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 1024,
+  "height": 1024,
+  "platformSettings": {},
+  "subMetas": {
+    "훈련소": {
+      "ver": "1.0.6",
+      "uuid": "6dcf2fd7-5032-49c2-a81b-85ea7ebe3fc4",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "7365931f-7cf9-4ce3-9f5d-032645dc52a3",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 7,
+      "offsetY": 13.5,
+      "trimX": 14,
+      "trimY": 29,
+      "width": 1010,
+      "height": 939,
+      "rawWidth": 1024,
+      "rawHeight": 1024,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

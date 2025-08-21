@@ -1,0 +1,38 @@
+{
+  "ver": "2.3.7",
+  "uuid": "c80081f1-4999-4e48-b4c6-b310cd85c212",
+  "importer": "texture",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 1024,
+  "height": 1024,
+  "platformSettings": {},
+  "subMetas": {
+    "하쿠인건물1": {
+      "ver": "1.0.6",
+      "uuid": "e8b2e042-3fbe-447f-a555-60859f926e47",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "c80081f1-4999-4e48-b4c6-b310cd85c212",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 18.5,
+      "offsetY": 13.5,
+      "trimX": 40,
+      "trimY": 6,
+      "width": 981,
+      "height": 985,
+      "rawWidth": 1024,
+      "rawHeight": 1024,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}
