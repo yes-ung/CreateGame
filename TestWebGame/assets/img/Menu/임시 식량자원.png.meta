@@ -1,0 +1,38 @@
+{
+  "ver": "2.3.7",
+  "uuid": "b45764b7-7be2-424a-805b-1ed6777e8ed4",
+  "importer": "texture",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 646,
+  "height": 600,
+  "platformSettings": {},
+  "subMetas": {
+    "임시 식량자원": {
+      "ver": "1.0.6",
+      "uuid": "e954b289-ea91-49d8-b145-6e2ef4e12dd4",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "b45764b7-7be2-424a-805b-1ed6777e8ed4",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": -1.5,
+      "offsetY": 18.5,
+      "trimX": 38,
+      "trimY": 18,
+      "width": 567,
+      "height": 527,
+      "rawWidth": 646,
+      "rawHeight": 600,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}
