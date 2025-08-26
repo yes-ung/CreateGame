@@ -30,4 +30,9 @@ public class RulesController {
         return "index";
     }
 
+    @GetMapping("/game")
+    public String cocos() {
+        return "redirect:/web-mobile/index.html"; // 이 경로로 리디렉션
+    }
+
 }
