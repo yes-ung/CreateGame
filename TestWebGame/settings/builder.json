@@ -1,7 +1,7 @@
 {
   "title": "TestWebGame",
   "packageName": "org.cocos2d.demo",
-  "startScene": "c37052d1-5c77-4139-b545-086b2ccd8233",
+  "startScene": "08268946-f574-4436-b79b-ca4443c7a563",
   "excludeScenes": [],
   "orientation": {
     "landscapeRight": true,
