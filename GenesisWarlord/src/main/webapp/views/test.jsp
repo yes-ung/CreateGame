@@ -50,7 +50,7 @@
             margin: 0;
             padding: 0;
             height: 100%;
-            background: #41d7b4;
+            background: #96d6c8;
         }
         .page {
             display: flex;

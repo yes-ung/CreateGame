@@ -2,7 +2,7 @@
   "ver": "1.0.27",
   "importer": "image",
   "imported": true,
-  "uuid": "1f040f2b-d0a7-47f3-9765-21542c2b2cee",
+  "uuid": "c5f3da5a-2b0c-4f44-875d-92c3e5860613",
   "files": [
     ".json",
     ".png"
@@ -10,19 +10,19 @@
   "subMetas": {
     "6c48a": {
       "importer": "texture",
-      "uuid": "1f040f2b-d0a7-47f3-9765-21542c2b2cee@6c48a",
-      "displayName": "Dragoon",
+      "uuid": "c5f3da5a-2b0c-4f44-875d-92c3e5860613@6c48a",
+      "displayName": "드라군기본형",
       "id": "6c48a",
       "name": "texture",
       "userData": {
         "wrapModeS": "clamp-to-edge",
         "wrapModeT": "clamp-to-edge",
-        "imageUuidOrDatabaseUri": "1f040f2b-d0a7-47f3-9765-21542c2b2cee",
+        "imageUuidOrDatabaseUri": "c5f3da5a-2b0c-4f44-875d-92c3e5860613",
         "isUuid": true,
         "visible": false,
         "minfilter": "linear",
         "magfilter": "linear",
-        "mipfilter": "nearest",
+        "mipfilter": "none",
         "anisotropy": 0
       },
       "ver": "1.0.22",
@@ -34,21 +34,21 @@
     },
     "f9941": {
       "importer": "sprite-frame",
-      "uuid": "1f040f2b-d0a7-47f3-9765-21542c2b2cee@f9941",
-      "displayName": "Dragoon",
+      "uuid": "c5f3da5a-2b0c-4f44-875d-92c3e5860613@f9941",
+      "displayName": "드라군기본형",
       "id": "f9941",
       "name": "spriteFrame",
       "userData": {
         "trimThreshold": 1,
         "rotated": false,
-        "offsetX": -6.5,
-        "offsetY": -10.5,
-        "trimX": 12,
+        "offsetX": 4,
+        "offsetY": -3.5,
+        "trimX": 31,
         "trimY": 25,
-        "width": 731,
-        "height": 643,
-        "rawWidth": 768,
-        "rawHeight": 672,
+        "width": 42,
+        "height": 53,
+        "rawWidth": 96,
+        "rawHeight": 96,
         "borderTop": 0,
         "borderBottom": 0,
         "borderLeft": 0,
@@ -60,17 +60,17 @@
         "meshType": 0,
         "vertices": {
           "rawPosition": [
-            -365.5,
-            -321.5,
+            -21,
+            -26.5,
             0,
-            365.5,
-            -321.5,
+            21,
+            -26.5,
             0,
-            -365.5,
-            321.5,
+            -21,
+            26.5,
             0,
-            365.5,
-            321.5,
+            21,
+            26.5,
             0
           ],
           "indexes": [
@@ -82,38 +82,38 @@
             3
           ],
           "uv": [
-            12,
-            647,
-            743,
-            647,
-            12,
-            4,
-            743,
-            4
+            31,
+            71,
+            73,
+            71,
+            31,
+            18,
+            73,
+            18
           ],
           "nuv": [
-            0.015625,
-            0.005952380952380952,
-            0.9674479166666666,
-            0.005952380952380952,
-            0.015625,
-            0.9627976190476191,
-            0.9674479166666666,
-            0.9627976190476191
+            0.3229166666666667,
+            0.1875,
+            0.7604166666666666,
+            0.1875,
+            0.3229166666666667,
+            0.7395833333333334,
+            0.7604166666666666,
+            0.7395833333333334
           ],
           "minPos": [
-            -365.5,
-            -321.5,
+            -21,
+            -26.5,
             0
           ],
           "maxPos": [
-            365.5,
-            321.5,
+            21,
+            26.5,
             0
           ]
         },
         "isUuid": true,
-        "imageUuidOrDatabaseUri": "1f040f2b-d0a7-47f3-9765-21542c2b2cee@6c48a",
+        "imageUuidOrDatabaseUri": "c5f3da5a-2b0c-4f44-875d-92c3e5860613@6c48a",
         "atlasUuid": "",
         "trimType": "auto"
       },
@@ -129,11 +129,6 @@
     "type": "sprite-frame",
     "hasAlpha": true,
     "fixAlphaTransparencyArtifacts": false,
-    "redirect": "1f040f2b-d0a7-47f3-9765-21542c2b2cee@6c48a",
-    "flipVertical": false,
-    "flipGreenChannel": false,
-    "compressSettings": {
-      "useCompressTexture": false
-    }
+    "redirect": "c5f3da5a-2b0c-4f44-875d-92c3e5860613@6c48a"
   }
 }
