@@ -1,4 +1,4 @@
-import { _decorator, Component, Vec2, Node, UITransform } from 'cc';
+import { _decorator, Component, Vec3, Node } from 'cc';
 import { SpriteSheetAnimator } from './SpriteSheetAnimator';
 const { ccclass, property } = _decorator;
 
@@ -17,9 +17,9 @@ export class MoveUnitsExample extends Component {
             const unitNode = this.units[i];
             const animator = unitNode.getComponent(SpriteSheetAnimator);
             if (animator) {
-                const worldTarget = new Vec2(300 + i * 100, 200);
-                const localTarget = unitNode.parent!.getComponent(UITransform).convertToNodeSpaceAR(worldTarget);
-                animator.moveTo(localTarget);
+                // MapRoot 기준 local 좌표를 직접 지정
+                const targetLocalPos = new Vec3(200 + i * 150, 200, 0); // X 위치만 다르게
+                animator.moveTo(targetLocalPos);
             } else {
                 console.warn(`유닛 ${i}에 SpriteSheetAnimator 컴포넌트가 없습니다.`);
             }
