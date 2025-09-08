@@ -40,11 +40,6 @@ export class SpriteSheetAnimator extends Component {
     @property({ type: [AnimationClip] })
     animationClips: AnimationClip[] = [];
 
-    @property(Node)
-    mapRoot: Node = null;
-
-    @property(Node)
-    mainCamera: Node = null;
 
     private _animations: Record<string, AnimationClip> = {};
     private _currentAnimation: AnimationClip = null;
@@ -66,29 +61,25 @@ export class SpriteSheetAnimator extends Component {
     update(deltaTime: number) {
         // 이동 처리
         if (this._targetPos) {
-            const parent = this.node.parent;
-            if (!parent) return;
+    const currentPos = this.node.getPosition(); // 현재 위치 (로컬 좌표)
 
-            const currentPos = this.node.getPosition(); // 현재 로컬 좌표
-            const worldTargetPos = this._targetPos;
-            const targetLocalPos = parent.getComponent(UITransform).convertToNodeSpaceAR(worldTargetPos); // <-- 좌표 변환
+    const toTarget = this._targetPos.subtract(currentPos); // 목표지점과 현재 위치 벡터 차이
+    const distance = toTarget.length();
 
-            const toTarget = targetLocalPos.subtract(currentPos);
-            const distance = toTarget.length();
+    if (distance > 1) {
+        const direction = toTarget.normalize();
+        const moveDelta = direction.multiplyScalar(this._moveSpeed * deltaTime);
+        const newPos = currentPos.add(moveDelta);
+        this.node.setPosition(newPos);
 
-            if (distance > 1) {
-                const direction = toTarget.normalize();
-                const moveDelta = direction.multiplyScalar(this._moveSpeed * deltaTime);
-                const newPos = currentPos.add(moveDelta);
-                this.node.setPosition(newPos);
-
-                const dirName = getDirection(direction.x, direction.y);
-                this.playAnimation(dirName);
+        const dirName = getDirection(direction.x, direction.y);
+        this.playAnimation(dirName);
             } else {
-                this._targetPos = null;
-                this.playAnimation('idle');
+        this._targetPos = null;
+        this.playAnimation('idle');
             }
         }
+
 
         // 애니메이션 프레임 처리
         if (!this._currentAnimation) return;
@@ -126,29 +117,8 @@ export class SpriteSheetAnimator extends Component {
     }
 
     public moveTo(screenPos: Vec3) {
-        if (!this.mapRoot || !this.mainCamera) {
-            console.warn('mapRoot 또는 mainCamera가 설정되지 않았습니다.');
-            return;
-        }
-
-        const cameraComp = this.mainCamera.getComponent(Camera);
-        if (!cameraComp) {
-            console.warn('mainCamera에 Camera 컴포넌트가 없습니다.');
-            return;
-        }
-
-        // screenPos를 Vec3 형태로 만듭니다 (z는 0)
-        const screenPosVec3 = new Vec3(screenPos.x, screenPos.y, 0);
-        const worldPos = new Vec3();
-
-        // 스크린 좌표 -> 월드 좌표 변환
-        cameraComp.screenToWorld(screenPosVec3, worldPos);
-
-        // 월드 좌표를 mapRoot의 로컬 좌표로 변환
-        const localPos = this.mapRoot.getComponent(UITransform).convertToNodeSpaceAR(worldPos);
-        localPos.z = 0;
-
-        this._targetPos = localPos.clone();
+        console.log("moveTo 함수 호출됨, screenPos:", screenPos);
+        this._targetPos = screenPos.clone();
     }
 
     public playAnimation(name: string) {

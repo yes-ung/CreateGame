@@ -18,7 +18,7 @@ export class MoveUnitsExample extends Component {
             const animator = unitNode.getComponent(SpriteSheetAnimator);
             if (animator) {
                 // MapRoot 기준 local 좌표를 직접 지정
-                const targetLocalPos = new Vec3(200 + i * 150, 200, 0); // X 위치만 다르게
+                const targetLocalPos = new Vec3(10 + i * 50, 10, 0); // X 위치만 다르게
                 animator.moveTo(targetLocalPos);
             } else {
                 console.warn(`유닛 ${i}에 SpriteSheetAnimator 컴포넌트가 없습니다.`);
