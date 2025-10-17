@@ -1,0 +1,134 @@
+{
+  "ver": "1.0.27",
+  "importer": "image",
+  "imported": true,
+  "uuid": "2dfbaac7-1d86-4f33-94d8-8f4e168804b2",
+  "files": [
+    ".json",
+    ".png"
+  ],
+  "subMetas": {
+    "6c48a": {
+      "importer": "texture",
+      "uuid": "2dfbaac7-1d86-4f33-94d8-8f4e168804b2@6c48a",
+      "displayName": "조이스틱 손잡이",
+      "id": "6c48a",
+      "name": "texture",
+      "userData": {
+        "wrapModeS": "clamp-to-edge",
+        "wrapModeT": "clamp-to-edge",
+        "imageUuidOrDatabaseUri": "2dfbaac7-1d86-4f33-94d8-8f4e168804b2",
+        "isUuid": true,
+        "visible": false,
+        "minfilter": "linear",
+        "magfilter": "linear",
+        "mipfilter": "none",
+        "anisotropy": 0
+      },
+      "ver": "1.0.22",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "f9941": {
+      "importer": "sprite-frame",
+      "uuid": "2dfbaac7-1d86-4f33-94d8-8f4e168804b2@f9941",
+      "displayName": "조이스틱 손잡이",
+      "id": "f9941",
+      "name": "spriteFrame",
+      "userData": {
+        "trimThreshold": 1,
+        "rotated": false,
+        "offsetX": -2,
+        "offsetY": 1,
+        "trimX": 1,
+        "trimY": 0,
+        "width": 680,
+        "height": 684,
+        "rawWidth": 686,
+        "rawHeight": 686,
+        "borderTop": 0,
+        "borderBottom": 0,
+        "borderLeft": 0,
+        "borderRight": 0,
+        "packable": true,
+        "pixelsToUnit": 100,
+        "pivotX": 0.5,
+        "pivotY": 0.5,
+        "meshType": 0,
+        "vertices": {
+          "rawPosition": [
+            -340,
+            -342,
+            0,
+            340,
+            -342,
+            0,
+            -340,
+            342,
+            0,
+            340,
+            342,
+            0
+          ],
+          "indexes": [
+            0,
+            1,
+            2,
+            2,
+            1,
+            3
+          ],
+          "uv": [
+            1,
+            686,
+            681,
+            686,
+            1,
+            2,
+            681,
+            2
+          ],
+          "nuv": [
+            0.0014577259475218659,
+            0.0029154518950437317,
+            0.9927113702623906,
+            0.0029154518950437317,
+            0.0014577259475218659,
+            1,
+            0.9927113702623906,
+            1
+          ],
+          "minPos": [
+            -340,
+            -342,
+            0
+          ],
+          "maxPos": [
+            340,
+            342,
+            0
+          ]
+        },
+        "isUuid": true,
+        "imageUuidOrDatabaseUri": "2dfbaac7-1d86-4f33-94d8-8f4e168804b2@6c48a",
+        "atlasUuid": "",
+        "trimType": "auto"
+      },
+      "ver": "1.0.12",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    }
+  },
+  "userData": {
+    "type": "sprite-frame",
+    "hasAlpha": true,
+    "fixAlphaTransparencyArtifacts": false,
+    "redirect": "2dfbaac7-1d86-4f33-94d8-8f4e168804b2@6c48a"
+  }
+}
